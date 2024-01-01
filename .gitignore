@@ -1,0 +1,21 @@
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# .terraform directory
+.terraform/
+
+# Crash log files
+crash.log
+
+# Override files as they are usually used to override Terraform settings in the current directory
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# .tfvars files are used to set variables with sensitive information
+*.tfvars
+
+# .terraformrc files can contain credentials
+terraform.rc
