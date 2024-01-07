@@ -1,4 +1,4 @@
-# eks_project_1
+# DONT FORGET TO ALLOW YOUR IP IN INBOUND RULES OF YOUR NODE
 
 # Pre-Requisites
 1. Use latest  version of AWS Cli because EKS Cluster Access Management support added in 2.15.3 release
@@ -26,4 +26,3 @@ AWS CLI Commands for EKS Cluster Access Management
  * https://medium.com/@adrianarba/ci-cd-defined-through-terraform-using-aws-codepipeline-aws-codecommit-and-aws-codebuild-12ade4d9cfa3
 ================================================================================================
 
-# DONT FORGET TO ALLOW YOUR IP IN INBOUND RULES OF YOUR NODE
