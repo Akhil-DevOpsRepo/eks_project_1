@@ -5,6 +5,7 @@
 # .terraform directory
 .terraform/
 
+mydemorepo/
 # Crash log files
 crash.log
 
