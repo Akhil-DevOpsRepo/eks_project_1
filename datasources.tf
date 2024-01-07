@@ -20,6 +20,54 @@ data "aws_subnets" "default" {
   }
 }
 
-output "default_subnets" {
-  value = data.aws_subnets.default.ids
+#output "default_subnets" {
+#  value = data.aws_subnets.default.ids
+#}
+
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["codepipeline.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+data "aws_iam_policy_document" "codepipeline_policy" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:GetBucketVersioning",
+      "s3:PutObjectAcl",
+      "s3:PutObject",
+    ]
+
+    resources = [
+      data.aws_s3_bucket.mybucket.arn,
+      "${data.aws_s3_bucket.mybucket.arn}/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "codebuild:BatchGetBuilds",
+      "codebuild:StartBuild",
+      "codecommit:*"
+    ]
+
+    resources = ["*"]
+  }
+}
+
+data "aws_s3_bucket" "mybucket" {
+  bucket = "initialdemobucket"
 }

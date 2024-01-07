@@ -107,19 +107,6 @@ resource "aws_iam_policy" "codebuild_policy" {
         {
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:s3:::codepipeline-us-east-1-*"
-            ],
-            "Action": [
-                "s3:PutObject",
-                "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketAcl",
-                "s3:GetBucketLocation"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Resource": [
                 "arn:aws:codecommit:us-east-1:047946443426:mydemorepo"
             ],
             "Action": [
@@ -135,7 +122,9 @@ resource "aws_iam_policy" "codebuild_policy" {
             "Action": [
                 "s3:PutObject",
                 "s3:GetBucketAcl",
-                "s3:GetBucketLocation"
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:GetObjectVersion"
             ]
         },
         {
@@ -165,4 +154,17 @@ resource "aws_iam_role_policy_attachment" "codebuild_policy_attachment" {
 resource "aws_iam_role_policy_attachment" "codebuild_managed_policy_attachment" {
   policy_arn = "arn:aws:iam::aws:policy/EC2InstanceProfileForImageBuilderECRContainerBuilds"
   role       = aws_iam_role.codebuild.name
+}
+
+
+
+resource "aws_iam_role" "codepipeline_role" {
+  name               = "codepiplene-role"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
+
+resource "aws_iam_role_policy" "codepipeline_policy" {
+  name   = "codepipeline_policy"
+  role   = aws_iam_role.codepipeline_role.id
+  policy = data.aws_iam_policy_document.codepipeline_policy.json
 }
