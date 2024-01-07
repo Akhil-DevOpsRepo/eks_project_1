@@ -25,3 +25,5 @@ AWS CLI Commands for EKS Cluster Access Management
 
  * https://medium.com/@adrianarba/ci-cd-defined-through-terraform-using-aws-codepipeline-aws-codecommit-and-aws-codebuild-12ade4d9cfa3
 ================================================================================================
+
+# DONT FORGET TO ALLOW YOUR IP IN INBOUND RULES OF YOUR NODE
