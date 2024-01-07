@@ -44,7 +44,7 @@ phases:
       # Show time, applying manifests changes using kubectl
       - kubectl config get-contexts
       - echo "Apply changes to kube manifests"            
-      #- kubectl apply -f manifests/ --v=8
+      - kubectl apply -f manifests/ 
       - kubectl get pods
       - echo "All done!!!! Kubernetes changes applied"           
       # Create Artifacts which we can use if we want to continue our pipeline for other stages
