@@ -43,6 +43,7 @@ resource "aws_codepipeline" "codepipeline" {
       }
     }
   }
+  depends_on = [aws_eks_cluster.my_cluster]
 }
 
 
